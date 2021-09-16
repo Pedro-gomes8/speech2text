@@ -10,12 +10,12 @@ function App() {
 
   let lang;
   const queryString = window.location.search;
-  if (queryString){
+  if (queryString) {
     lang = queryString.split("?")[1];
-  }else{
+  } else {
     lang = "en";
   }
-  
+
   const handleListing = () => {
     setIsListening(true);
     setParagraph('');
@@ -42,7 +42,7 @@ function App() {
     <div className="App">
       <header className="heading-title">
         <h1 className="page-title">Speech to text</h1>
-        <p className="description">Bem vindo ao Speech to Text, pressione o microfone enquanto estiver falando. Ao final aparecerá a tradução do seu áudio ao lado. </p>
+        <p className="description">Bem vindo ao Speech to Text, pressione o microfone quando desejar falar. Ao final aparecerá a transcrição do seu áudio ao lado. </p>
 
       </header>
       <main className='primary-content'>
