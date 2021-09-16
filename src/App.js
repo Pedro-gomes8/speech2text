@@ -1,18 +1,28 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import './App.css';
 import microphoneImage from "./assets/images/microphone.svg";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+
 function App() {
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
   const [paragraph, setParagraph] = useState('');
 
+  let lang;
+  const queryString = window.location.search;
+  if (queryString){
+    lang = queryString.split("?")[1];
+  }else{
+    lang = "en";
+  }
+  
   const handleListing = () => {
     setIsListening(true);
     setParagraph('');
     resetTranscript();
     SpeechRecognition.startListening({
       continuous: true,
+      language: lang,
     });
   }
   const stopHandle = () => {
@@ -32,7 +42,7 @@ function App() {
     <div className="App">
       <header className="heading-title">
         <h1 className="page-title">Speech to text</h1>
-        <p1 className="description">Bem vindo ao Speech to Text, pressione o microfone enquanto estiver falando. Ao final aparecerá a tradução do seu áudio ao lado. </p1>
+        <p className="description">Bem vindo ao Speech to Text, pressione o microfone enquanto estiver falando. Ao final aparecerá a tradução do seu áudio ao lado. </p>
 
       </header>
       <main className='primary-content'>
